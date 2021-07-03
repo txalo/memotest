@@ -1,0 +1,14 @@
+{
+  "name": "memotest",
+  "version": "1.0.0",
+  "description": "Memotest - Ejercicio para r/arg-programa",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gonzalo Cabrera",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.0.1"
+  }
+}

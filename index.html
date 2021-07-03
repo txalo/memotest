@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>MEMOTEST</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='node_modules/bootstrap/dist/css/bootstrap.min.css'>
+    
+</head>
+<body>
+    <audio src="./snd/correct.wav" id="correcto"></audio>
+    <audio src="./snd/click.wav" id="click"></audio>
+    <audio src="./snd/final.wav" id="completo"></audio>
+    <audio src="./snd/nuevo.wav" id="new"></audio>
+    <div id="contenedor" style="margin: 8px 30px" >
+      <div class="row">
+        <div class="col-2" style="height: 200px">
+          <div id="menu">
+            <h1> MEMOTEST </h1>
+            <div id="display">
+              Jugadas <span id="jugadas" class="display"> - </span>
+            </div>
+            
+            <div id="nina">
+              <button type="button" class="btn btn-outline-light" id="nina-mas">+</button> NINA <span id="puntos-nina" class="display"> 0 </span></span>
+            </div>
+            
+            <div id="iker">
+              <button type="button" class="btn btn-outline-light" id="iker-mas">+</button> IKER <span id="puntos-iker" class="display"> 0 </span>
+            </div>
+            <button type="button" class="btn btn-outline-light" id="nuevo">NUEVO</button>
+          </div>
+          
+        </div>
+        <div class="col-10" id="tablero">
+          <div class="row">
+            <div class="col"><img src="img/pokeball.jpg" id="c1" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" id="c2" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" id="c3" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="w-100" style="height: 10px;"></div>
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="w-100" style="height: 10px;"></div>
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="w-100" style="height: 10px;"></div>
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="w-100" style="height: 10px;"></div>
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>  
+            <div class="col"><img src="img/pokeball.jpg" alt="Reverso" style="width:100%;" class="reverso"></div>            
+          </div>
+          
+        </div>
+      </div>
+        <!--div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <img src="img/pokeball.jpg" alt="Reverso" style="width:150px;height:150px;">
+              </div>
+              <div class="flip-card-back" id="prueba-back">
+                
+              </div>
+            </div>
+        </div--> 
+    </div>
+    <script src='js/config.js'></script>
+    <script src='js/funciones.js'></script>
+    <script src='js/main.js'></script>
+</body>
+</html>
