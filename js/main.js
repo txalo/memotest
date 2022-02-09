@@ -1,8 +1,6 @@
-
-
 // Variables del tablero
 const $tablero = document.querySelector("#tablero");
-const $cartas = document.querySelectorAll(".reverso");
+//const $cartas;
 
 //MENU
 const $displayJugadas = document.querySelector("#jugadas");
@@ -22,93 +20,117 @@ const ESPERA_VOLTEO = 1500;
 let cartasGiradas = [];
 let jugadas = 0;
 let coincidencias = 0;
-let puntos = {"iker": 0, "nina": 0};
+let puntos = {
+    "iker": 0,
+    "nina": 0
+};
 
-function setCartas (){
+function setCartas() {
     let cartasAzar = [];
     let i = 0;
     let ID;
-    while (i<20){
-        ID = Math.floor(Math.random()*151)+1;
-        if (!cartasAzar.find(element => element == ID)){
-            cartasAzar[i]=ID;
+    while (i < 20) {
+        ID = Math.floor(Math.random() * 151) + 1;
+        if (!cartasAzar.find(element => element == ID)) {
+            cartasAzar[i] = ID;
             i++
-        }     
+        }
     }
-    
+
     return cartasAzar;
 }
 
-function mostrarCarta(carta){
+function mostrarCarta(carta) {
     $clickSound.play();
     carta.style.transform = "rotateY(360deg)";
-    carta.src = POKEMONS[carta.dataset.id];    
+    carta.src = POKEMONS[carta.dataset.id];
     carta.dataset.girada = true;
 }
 
-function voltearCarta (carta){
+function voltearCarta(carta) {
     carta.style.transform = "none";
     carta.src = "img/pokeball.jpg";
     carta.dataset.girada = false;
 }
 
 
-function mezclarCartas(){
-    JUEGO.cartas = JUEGO.cartas.concat(JUEGO.cartas);
-    JUEGO.cartas.sort(function(){return 0.5 - Math.random()});
-    for (let i = 0; i < $cartas.length; i++){
-        $cartas[i].dataset.id = JUEGO.cartas[i];
-        voltearCarta($cartas[i]);
-        //$cartas[i].dataset.girada = false;
-
-    }
+function crearTablero(){
+    $tablero.innerHTML = "";
+    let row = document.createElement("div");
+    row.className = "row";
+    let carta;
+    JUEGO.cartas.forEach((id) =>{
+        carta = document.createElement("img");
+        carta.dataset.id = id;
+        carta.style.transform = "none";
+        carta.className = "reverso";
+        carta.src = "img/pokeball.jpg";
+        carta.dataset.girada = false;
+        row.appendChild(carta);
+    });
+    $tablero.appendChild(row);
 }
 
-function compararCartas(){
-    if (cartasGiradas[0].dataset.id == cartasGiradas[1].dataset.id){
+function mezclarCartas() {
+    JUEGO.cartas = JUEGO.cartas.concat(JUEGO.cartas);
+    JUEGO.cartas.sort(function () {
+        return 0.5 - Math.random()
+    });    
+}
+
+function compararCartas() {
+    if (cartasGiradas[0].dataset.id == cartasGiradas[1].dataset.id) {
         cartasGiradas[0].dataset.girada = true;
         cartasGiradas[1].dataset.girada = true;
         return true;
-    }else{
+    } else {
         return false;
     }
 }
 
-function actualizarJugadas(){
-    jugadas ++;
+function actualizarJugadas() {
+    jugadas++;
     $displayJugadas.textContent = String(jugadas);
 }
 
-function iniciarJuego(){
+function iniciarJuego() {
     JUEGO.cartas = setCartas();
     mezclarCartas();
+    crearTablero();
+    const $cartas = document.querySelectorAll(".reverso");
     cartasGiradas = [];
     jugadas = 0;
     coincidencias = 0;
     $nuevoSound.play();
     document.querySelector("#tablero").style.opacity = 1;
-    puntos = {"iker":0, "nina": 0};
+    puntos = {
+        "iker": 0,
+        "nina": 0
+    };
     resetearDisplays();
     manejarJugada($tablero);
 }
 
-function manejarJugada($tablero){
+function manejarJugada($tablero) {
 
-    $tablero.onclick = function (e){
+    $tablero.onclick = function (e) {
+        console.log(e.target);
         const $carta = e.target;
-        if ($carta.classList.contains('reverso')){
-            if (cartasGiradas.length < 2 && $carta.dataset.girada === "false"){
+        if ($carta.classList.contains('reverso')) {
+            if (cartasGiradas.length < 2 && $carta.dataset.girada === "false") {
                 cartasGiradas.push($carta);
                 mostrarCarta($carta);
-                if (cartasGiradas.length == 2){
-                    if (compararCartas()){
-                        coincidencias ++;
-                        if (coincidencias < 20) {$correctSound.play();}
+                if (cartasGiradas.length == 2) {
+                    if (compararCartas()) {
+                        coincidencias++;
+                        if (coincidencias < 20) {
+                            $correctSound.play();
+                        }
                         cartasGiradas = [];
                         actualizarJugadas();
-                        
-                    }else{
-                        setTimeout(function(){
+
+                    } else {
+                        setTimeout(function () {
                             voltearCarta(cartasGiradas[0]);
                             voltearCarta(cartasGiradas[1]);
                             cartasGiradas = [];
@@ -117,8 +139,12 @@ function manejarJugada($tablero){
                     }
                 }
             }
-    
-            if (coincidencias == 20){ setTimeout(function(){$completeSound.play()},1000)}
+
+            if (coincidencias == 20) {
+                setTimeout(function () {
+                    $completeSound.play()
+                }, 1000)
+            }
         }
     };
 }
@@ -183,27 +209,26 @@ document.querySelectorAll(".reverso").forEach(function(element){
     }
 });*/
 
-function sumarPunto (jugador){
-    let $puntaje = document.querySelector("#puntos-"+jugador);
+function sumarPunto(jugador) {
+    let $puntaje = document.querySelector("#puntos-" + jugador);
     puntos[jugador]++
     $puntaje.textContent = String(puntos[jugador]);
 }
 
-function resetearDisplays(){
+function resetearDisplays() {
     const $displays = document.querySelectorAll(".display");
-    $displays.forEach(function(elemento){
+    $displays.forEach(function (elemento) {
         elemento.textContent = "-";
     })
 }
-$botonNina.onclick = function(){
-    sumarPunto ("nina");
+$botonNina.onclick = function () {
+    sumarPunto("nina");
 }
 
-$botonIker.onclick = function(){
-    sumarPunto ("iker");
+$botonIker.onclick = function () {
+    sumarPunto("iker");
 }
 
-   
+
 
 //console.log (POKEMONS[1]);
-

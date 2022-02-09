@@ -39,12 +39,25 @@ body{
   opacity: 0;
 }
 
+#tablero .row{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  
+}
+
+#tablero .row img{
+  border-radius: 10px;
+  border: 2px solid #dedede;
+  padding: 0;
+}
+
 .reverso {
   position: relative;
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.2s;
+  transition: transform 0.1s;
   transform-style: preserve-3d;
 }
 
