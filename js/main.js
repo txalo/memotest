@@ -5,8 +5,7 @@ const $tablero = document.querySelector("#tablero");
 //MENU
 const $displayJugadas = document.querySelector("#jugadas");
 const $botonNuevo = document.querySelector("#nuevo");
-const $botonIker = document.querySelector("#iker-mas");
-const $botonNina = document.querySelector("#nina-mas");
+
 
 //SONIDOS
 const $clickSound = document.querySelector("#click");
@@ -41,6 +40,8 @@ function setCartas() {
 }
 
 function mostrarCarta(carta) {
+    $clickSound.pause();
+    $clickSound.currentTime = 0;
     $clickSound.play();
     carta.style.transform = "rotateY(360deg)";
     carta.src = POKEMONS[carta.dataset.id];
@@ -107,7 +108,7 @@ function iniciarJuego() {
         "iker": 0,
         "nina": 0
     };
-    resetearDisplays();
+    //resetearDisplays();
     manejarJugada($tablero);
 }
 
@@ -124,6 +125,8 @@ function manejarJugada($tablero) {
                     if (compararCartas()) {
                         coincidencias++;
                         if (coincidencias < 20) {
+                            $correctSound.pause();
+                            $correctSound.currentTime = 0;
                             $correctSound.play();
                         }
                         cartasGiradas = [];
@@ -142,6 +145,8 @@ function manejarJugada($tablero) {
 
             if (coincidencias == 20) {
                 setTimeout(function () {
+                    $completeSound.pause();
+                    $completeSound.currentTime = 0;
                     $completeSound.play()
                 }, 1000)
             }
@@ -209,25 +214,7 @@ document.querySelectorAll(".reverso").forEach(function(element){
     }
 });*/
 
-function sumarPunto(jugador) {
-    let $puntaje = document.querySelector("#puntos-" + jugador);
-    puntos[jugador]++
-    $puntaje.textContent = String(puntos[jugador]);
-}
 
-function resetearDisplays() {
-    const $displays = document.querySelectorAll(".display");
-    $displays.forEach(function (elemento) {
-        elemento.textContent = "-";
-    })
-}
-$botonNina.onclick = function () {
-    sumarPunto("nina");
-}
-
-$botonIker.onclick = function () {
-    sumarPunto("iker");
-}
 
 
 
