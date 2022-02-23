@@ -122,6 +122,9 @@ function cambiarDisplayActivo(){
     )
 }
 
+function cambiarJugadorActivo(){
+    ESTADO_JUEGO.jugadorActivo == 'p1' ? ESTADO_JUEGO.jugadorActivo = 'p2' :  ESTADO_JUEGO.jugadorActivo = 'p1';
+}
 function iniciarJuego() {
     JUEGO.cartas = setCartas();
     ESTADO_JUEGO.jugadorActivo = 'p1';
@@ -144,7 +147,7 @@ function iniciarJuego() {
 function manejarJugada($tablero) {
 
     $tablero.onclick = function (e) {
-        console.log(e.target);
+        
         const $carta = e.target;
         if ($carta.classList.contains('reverso')) {
             if (cartasGiradas.length < 2 && $carta.dataset.girada === "false") {
@@ -167,6 +170,8 @@ function manejarJugada($tablero) {
                             voltearCarta(cartasGiradas[0]);
                             voltearCarta(cartasGiradas[1]);
                             cartasGiradas = [];
+                            cambiarJugadorActivo();
+                            cambiarDisplayActivo();
                         }, ESPERA_VOLTEO);
                         actualizarJugadas();
                     }
