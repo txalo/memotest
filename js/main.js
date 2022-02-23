@@ -122,24 +122,28 @@ function cambiarDisplayActivo(){
     )
 }
 
+function resetearDisplays(){
+    document.querySelector("#display--points-p1").textContent = 0;
+    document.querySelector("#display--points-p2").textContent = 0;
+}
+
 function cambiarJugadorActivo(){
     ESTADO_JUEGO.jugadorActivo == 'p1' ? ESTADO_JUEGO.jugadorActivo = 'p2' :  ESTADO_JUEGO.jugadorActivo = 'p1';
 }
 function iniciarJuego() {
     JUEGO.cartas = setCartas();
     ESTADO_JUEGO.jugadorActivo = 'p1';
+    ESTADO_JUEGO.jugadores.p1.puntos = 0;
+    ESTADO_JUEGO.jugadores.p2.puntos = 0;
     mezclarCartas();
     crearTablero();
+    resetearDisplays();
     const $cartas = document.querySelectorAll(".reverso");
     cartasGiradas = [];
     jugadas = 0;
     coincidencias = 0;
     $nuevoSound.play();
     document.querySelector("#tablero").style.opacity = 1;
-    puntos = {
-        "p1": 0,
-        "p2": 0
-    };
     //resetearDisplays();
     manejarJugada($tablero);
 }
