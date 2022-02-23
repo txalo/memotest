@@ -3,7 +3,7 @@ const $tablero = document.querySelector("#tablero");
 //const $cartas;
 
 //MENU
-const $displayJugadas = document.querySelector("#jugadas");
+//const $displayJugadas = document.querySelector("#jugadas");
 const $botonNuevo = document.querySelector("#nuevo");
 
 
@@ -13,15 +13,32 @@ const $correctSound = document.querySelector("#correcto");
 const $completeSound = document.querySelector("#completo");
 const $nuevoSound = document.querySelector("#new")
 
-//Tiempos de espera
+//Tiempo de espera
 const ESPERA_VOLTEO = 1500;
+
+//Estado del JUEGO
+const ESTADO_JUEGO = {
+    jugadas : 0,
+    coincidencias : 0,
+    jugadorActivo: '',
+    jugadores : {
+        p1 : {
+            puntos : 0,
+            nombre : ''            
+        }, 
+        p2 : {
+            puntos : 0,
+            nombre : ''            
+        }
+    }
+}
 
 let cartasGiradas = [];
 let jugadas = 0;
 let coincidencias = 0;
 let puntos = {
-    "iker": 0,
-    "nina": 0
+    "p1": 0,
+    "p2": 0
 };
 
 function setCartas() {
@@ -90,12 +107,24 @@ function compararCartas() {
 }
 
 function actualizarJugadas() {
-    jugadas++;
-    $displayJugadas.textContent = String(jugadas);
+    ESTADO_JUEGO.jugadas++;    
+}
+
+function actualizarPuntaje(jugadorActivo){
+    let puntos = document.querySelector("#display--points-" + jugadorActivo).textContent
+    document.querySelector("#display--points-" + jugadorActivo).textContent = Number(puntos) + (20 - coincidencias)
+}
+
+function cambiarDisplayActivo(){
+    document.querySelectorAll(".display").forEach ( 
+        display => display.classList.contains("active") ? 
+            display.classList.remove("active") : display.classList.add("active")
+    )
 }
 
 function iniciarJuego() {
     JUEGO.cartas = setCartas();
+    ESTADO_JUEGO.jugadorActivo = 'p1';
     mezclarCartas();
     crearTablero();
     const $cartas = document.querySelectorAll(".reverso");
@@ -105,8 +134,8 @@ function iniciarJuego() {
     $nuevoSound.play();
     document.querySelector("#tablero").style.opacity = 1;
     puntos = {
-        "iker": 0,
-        "nina": 0
+        "p1": 0,
+        "p2": 0
     };
     //resetearDisplays();
     manejarJugada($tablero);
@@ -130,6 +159,7 @@ function manejarJugada($tablero) {
                             $correctSound.play();
                         }
                         cartasGiradas = [];
+                        actualizarPuntaje(ESTADO_JUEGO.jugadorActivo);
                         actualizarJugadas();
 
                     } else {

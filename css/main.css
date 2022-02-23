@@ -9,12 +9,8 @@ body{
 }
 
 #menu{
-  
-  background-color:rgb(246, 226, 46);
-  
   color: #fff;
   font-weight: 600;
-  border-radius: 15px 5px;
 }
 
 #menu-head{
@@ -28,35 +24,66 @@ body{
 }
 
 /* DISPLAY */
-#display{
+#display-p1, #display-p2{
   font-family: Poppins, sans-serif;
+  margin-bottom: 30px;  
+  background-color:rgb(92, 92, 92);  
 }
 
-#display--score{
+#display-p1.active, #display-p2.active{
+  background-color:rgb(246, 226, 46);  
+}
+
+#display-p1{
+  border-radius: 15px 5px;  
+}
+
+#display-p2{
+  border-radius: 5px 15px;  
+}
+
+#display--score1{
   text-align: center;
   position: relative;
   display: flex;
   align-items: center;
   padding: 20px 10px;
-
 }
 
-#display--player1{
+#display--score2{
+  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+#display--p1{
   text-transform: uppercase;
   background-color: black;
   display: inline-block;
   padding: 8px 30px 8px 10px;
   border-radius: 6px;
   font-size: 15px;
-  width: 90%;
-  text-align: left;
-  
+  width: 100%;
+  margin-right: 10px;
+  text-align: left;  
 }
 
-#display--points{
+#display--p2{
+  text-transform: uppercase;
+  background-color: black;
+  display: inline-block;
+  padding: 8px 10px 8px 30px;
+  border-radius: 6px;
+  font-size: 15px;
+  width: 100%;
+  margin-left: 10px;
+  text-align: right;  
+}
+#display--points-p1{
   position: absolute;
-  right: 10px;
-  
+  right: 10px;  
   background-color: gray;
   border-radius: 50%;
   border: 2px solid #fff;
@@ -68,42 +95,63 @@ body{
   width: 60px;
 }
 
-#display--badges{
-  
+#display--points-p2{
+  position: absolute;
+  left: 10px;  
+  background-color: gray;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 60px;
+  width: 60px;
+}
+
+#display--badges1, #display--badges2{  
+  height: 40px;
   padding: 0 10px;
 }
 
-#display--info{
-  height: 120px;  
+#display--info1{
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 5px;
 }
 
-
-#display--info .avatar-squirtle{
-  margin-left: 10px;
-  height: 90%;
-  width: 70px;
-  background-image: url("../img/chars.png");
-  background-size: cover;
-  background-position: 0px 15px;
+#display--info2{
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+  padding: 0 5px;
 }
 
-#display--info .avatar-bulbasaur{
-  margin-left: 10px;
-  height: 90%;
-  width: 78px;
+.avatar-charmander,
+.avatar-bulbasaur,
+.avatar-squirtle{
+  height: 70%;
   background-image: url("../img/chars.png");
   background-size: cover;
-  background-position: -78px 0px;
 }
 
-#display--info .avatar-charmander{
-  margin-left: 10px;
-  height: 90%;
-  width: 94px;
-  background-image: url("../img/chars.png");
-  background-size: cover;
-  background-position: 94px 0px;
+.avatar-squirtle{  
+  width: 60px;
+  background-position: 0px 10px;
+}
+
+.avatar-bulbasaur{
+  width: 62px;  
+  background-position: -61px 0px;
+}
+
+.avatar-charmander{
+  width: 75px;
+  background-position: 75px 0px;
 }
 
 
