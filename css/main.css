@@ -180,19 +180,28 @@ body{
   
 }
 
-#tablero .row img{
-  border-radius: 10px;
-  border: 2px solid #dedede;
+.carta{
+  position: relative;
   padding: 0;
 }
 
-.reverso {
-  position: relative;
+.carta img{
+  border-radius: 10px;
+  border: 2px solid #dedede;  
   width: 100%;
-  height: 100%;
-  text-align: center;
+}
+
+.carta .frente{
+  transform: rotateY(90deg);
+  position: absolute;
+}
+
+
+.girada .frente {
+  transform: rotateY(0deg);
+  /*position: relative;    
   transition: transform 0.1s;
-  transform-style: preserve-3d;
+  transform-style: preserve-3d;*/
 }
 
  

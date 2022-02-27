@@ -60,29 +60,31 @@ function mostrarCarta(carta) {
     $clickSound.pause();
     $clickSound.currentTime = 0;
     $clickSound.play();
-    carta.style.transform = "rotateY(360deg)";
-    carta.src = POKEMONS[carta.dataset.id];
-    carta.dataset.girada = true;
+    carta.parentElement.className = "girada";
 }
 
 function voltearCarta(carta) {
-    carta.style.transform = "none";
-    carta.src = "img/pokeball.jpg";
-    carta.dataset.girada = false;
+    carta.parentElement.className = "";
 }
 
 
 function crearTablero(){
     $tablero.innerHTML = "";
     let row = document.createElement("div");
-    row.className = "row";
+    row.className = "row g-0";
     let carta;
     JUEGO.cartas.forEach((id) =>{
-        carta = document.createElement("img");
+        carta = document.createElement("div");
         carta.dataset.id = id;
-        carta.style.transform = "none";
-        carta.className = "reverso";
-        carta.src = "img/pokeball.jpg";
+        carta.className = "carta";
+        carta.innerHTML = 
+        `
+        <div>
+            <img src="${POKEMONS[id]}" class="frente"/>
+            <img src="img/pokeball.jpg" class="reverso" data-id ="${id}"/>
+        </div>
+        `
+        //carta.style.transform = "none";
         carta.dataset.girada = false;
         row.appendChild(carta);
     });
@@ -97,9 +99,10 @@ function mezclarCartas() {
 }
 
 function compararCartas() {
-    if (cartasGiradas[0].dataset.id == cartasGiradas[1].dataset.id) {
-        cartasGiradas[0].dataset.girada = true;
-        cartasGiradas[1].dataset.girada = true;
+    if (cartasGiradas[0].dataset.id === cartasGiradas[1].dataset.id) {
+        console.log(cartasGiradas)
+        cartasGiradas[0].parentElement.className = "girada";
+        cartasGiradas[1].parentElement.className = "girada";
         return true;
     } else {
         return false;
@@ -151,10 +154,10 @@ function iniciarJuego() {
 function manejarJugada($tablero) {
 
     $tablero.onclick = function (e) {
-        
         const $carta = e.target;
         if ($carta.classList.contains('reverso')) {
-            if (cartasGiradas.length < 2 && $carta.dataset.girada === "false") {
+            if (cartasGiradas.length < 2 && $carta.parentElement.className !== "girada") {
+                console.log("entre")
                 cartasGiradas.push($carta);
                 mostrarCarta($carta);
                 if (cartasGiradas.length == 2) {
