@@ -159,6 +159,7 @@ function manejarJugada($tablero) {
                 mostrarCarta($carta);
                 if (cartasGiradas.length == 2) {
                     if (compararCartas()) {
+                        actualizarPuntaje(ESTADO_JUEGO.jugadorActivo);
                         coincidencias++;
                         if (coincidencias < 20) {
                             $correctSound.pause();
@@ -166,9 +167,7 @@ function manejarJugada($tablero) {
                             $correctSound.play();
                         }
                         cartasGiradas = [];
-                        actualizarPuntaje(ESTADO_JUEGO.jugadorActivo);
                         actualizarJugadas();
-
                     } else {
                         setTimeout(function () {
                             voltearCarta(cartasGiradas[0]);
