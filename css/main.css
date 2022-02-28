@@ -183,22 +183,26 @@ body{
 .carta{
   position: relative;
   padding: 0;
+  
 }
 
 .carta img{
   border-radius: 10px;
   border: 2px solid #dedede;  
   width: 100%;
+  cursor: pointer;
 }
 
 .carta .frente{
   transform: rotateY(90deg);
   position: absolute;
+  
 }
 
 
 .girada .frente {
   transform: rotateY(0deg);
+  transition: transform 0.1s;
   /*position: relative;    
   transition: transform 0.1s;
   transform-style: preserve-3d;*/
