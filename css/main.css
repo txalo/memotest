@@ -4,7 +4,7 @@
   
 }
 body{
-  background: #a1a1a1;
+  background: #a6dafd;
   
 }
 
@@ -160,13 +160,9 @@ body{
   float: right;
 }
 
-#puntos-iker, #puntos-nina{
-  float: right;
-}
 #nuevo{
   float: right;
   margin-top: 10px;
-  
 }
 
 #tablero{
@@ -176,14 +172,12 @@ body{
 #tablero .row{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
-  
+  grid-gap: 10px;  
 }
 
 .carta{
   position: relative;
-  padding: 0;
-  
+  padding: 0;    
 }
 
 .carta img{
@@ -194,8 +188,9 @@ body{
 }
 
 .carta .frente{
-  transform: rotateY(90deg);
+  transform: rotateY(450deg);
   position: absolute;
+  transition: transform 0.1s;
   
 }
 
@@ -204,7 +199,6 @@ body{
   transform: rotateY(0deg);
   transition: transform 0.1s;
   /*position: relative;    
-  transition: transform 0.1s;
   transform-style: preserve-3d;*/
 }
 
