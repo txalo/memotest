@@ -100,7 +100,7 @@ function mezclarCartas() {
 
 function compararCartas() {
     if (cartasGiradas[0].dataset.id === cartasGiradas[1].dataset.id) {
-        console.log(cartasGiradas)
+        
         cartasGiradas[0].parentElement.className = "girada";
         cartasGiradas[1].parentElement.className = "girada";
         return true;
@@ -128,11 +128,14 @@ function cambiarDisplayActivo(){
 function resetearDisplays(){
     document.querySelector("#display--points-p1").textContent = 0;
     document.querySelector("#display--points-p2").textContent = 0;
+    document.querySelector("#display-p1").className = "display active";
+    document.querySelector("#display-p2").className = "display";
 }
 
 function cambiarJugadorActivo(){
     ESTADO_JUEGO.jugadorActivo == 'p1' ? ESTADO_JUEGO.jugadorActivo = 'p2' :  ESTADO_JUEGO.jugadorActivo = 'p1';
 }
+
 function iniciarJuego() {
     JUEGO.cartas = setCartas();
     ESTADO_JUEGO.jugadorActivo = 'p1';
@@ -157,7 +160,7 @@ function manejarJugada($tablero) {
         const $carta = e.target;
         if ($carta.classList.contains('reverso')) {
             if (cartasGiradas.length < 2 && $carta.parentElement.className !== "girada") {
-                console.log("entre")
+                
                 cartasGiradas.push($carta);
                 mostrarCarta($carta);
                 if (cartasGiradas.length == 2) {
