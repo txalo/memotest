@@ -80,8 +80,8 @@ function crearTablero(){
         carta.innerHTML = 
         `
         <div>
-            <img src="${POKEMONS[id]}" class="frente"/>
             <img src="img/pokeball.jpg" class="reverso" data-id ="${id}"/>
+            <img src="${POKEMONS[id]}" class="frente"/>
         </div>
         `
         //carta.style.transform = "none";
@@ -157,7 +157,9 @@ function iniciarJuego() {
 function manejarJugada($tablero) {
 
     $tablero.onclick = function (e) {
+        console.log(e);
         const $carta = e.target;
+
         if ($carta.classList.contains('reverso')) {
             if (cartasGiradas.length < 2 && $carta.parentElement.className !== "girada") {
                 

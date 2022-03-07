@@ -187,18 +187,17 @@ body{
   cursor: pointer;
 }
 
-.carta .frente{
-  transform: rotateY(450deg);
-  position: absolute;
-  transition: transform 0.1s;
-  
+.carta .reverso{
+  transform: rotateY(0deg);
+  position: absolute;  
 }
 
 
-.girada .frente {
-  transform: rotateY(0deg);
+.girada .reverso {
+  transform: rotateY(270deg);
   transition: transform 0.1s;
   /*position: relative;    
+  transition: transform 0.1s;
   transform-style: preserve-3d;*/
 }
 
