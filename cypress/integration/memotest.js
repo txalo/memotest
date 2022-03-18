@@ -51,7 +51,7 @@ context("Memotest", () => {
                 cy.get(listaDePares[0][1]).click();
                 cy.wait(150)    
                 cy.get(listaDePares[1][0]).click();
-                cy.wait(150)                  
+                cy.wait(1500)                  
                     
                 
             })
@@ -62,7 +62,7 @@ context("Memotest", () => {
         it ('Que no sume puntos por combinacion incorrecta  ', () =>{            
             cy.get('#display--points-p1').should('have.text', 0);
         })
-        
+
         it('Que cambia el jugador activo', () => {
             cy.get('#display-p2').should('have.class', 'active')
             cy.get('#display-p1').should('not.have.class', 'active')
