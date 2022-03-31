@@ -1,4 +1,4 @@
-//<reference types="Cypress" />
+///<reference types="Cypress" />
 
 const URL = "http://127.0.0.1:5500/index.html"
 context("Memotest", () => {
@@ -35,7 +35,7 @@ context("Memotest", () => {
 
         it('Que el jugador 1 esta activo al inicio del juego', () => {
             cy.get('#display-p1').should('have.class', 'active')
-            cy.get('#display-p2').should('not.have.class', 'active')
+            cy.get('#display-p2').should('not.have.class', 'active')            
         })
     })
     
