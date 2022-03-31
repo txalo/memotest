@@ -118,6 +118,13 @@ function actualizarPuntaje(jugadorActivo){
     document.querySelector("#display--points-" + jugadorActivo).textContent = Number(puntos) + (20 - coincidencias)
 }
 
+function mostrarPuntosAdquiridos(jugadorActivo){
+    let $infoPuntos = document.querySelector(`#display--info-points-${jugadorActivo}`); 
+    $infoPuntos.textContent = `+${20 - coincidencias}PTS`;
+    $infoPuntos.classList.toggle("visible");
+    setTimeout(function () {$infoPuntos.classList.toggle("visible")},500);
+}
+
 function cambiarDisplayActivo(){
     document.querySelectorAll(".display").forEach ( 
         display => display.classList.contains("active") ? 
@@ -157,7 +164,7 @@ function iniciarJuego() {
 function manejarJugada($tablero) {
 
     $tablero.onclick = function (e) {
-        console.log(e);
+        console.log(e.target);
         const $carta = e.target;
 
         if ($carta.classList.contains('reverso')) {
@@ -167,6 +174,7 @@ function manejarJugada($tablero) {
                 mostrarCarta($carta);
                 if (cartasGiradas.length == 2) {
                     if (compararCartas()) {
+                        mostrarPuntosAdquiridos(ESTADO_JUEGO.jugadorActivo);
                         actualizarPuntaje(ESTADO_JUEGO.jugadorActivo);
                         coincidencias++;
                         if (coincidencias < 20) {
